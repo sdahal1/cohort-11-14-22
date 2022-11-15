@@ -23,6 +23,8 @@ function getRandomArtist(artists) {
 
     let randomArtist = artists[randomNum];
     artists.push({name: "Michael Jackson", rating: 10})
+
+    console.log(`Random artist of the day ${randomArtist.name} is very popular in the charts.`)
     return randomArtist
 }
 
