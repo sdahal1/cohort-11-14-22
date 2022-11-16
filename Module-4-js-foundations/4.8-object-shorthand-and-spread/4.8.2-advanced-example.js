@@ -15,13 +15,21 @@ And it will return a new object like this containing the team name added to the 
 {
   fullName: 'Lebron James',
   points: 32000,
-  teams: [ 'Cavs', 'Heat', 'Lakers' ]
+  teams: [ 'Cavs', 'Heat', 'Celtics' ]
 }
 
 
 */
-function updatePlayer() {
-	
+function updatePlayer(playerObj, teamName) {
+	//destructure teams
+    const {teams} = playerObj;
+
+    //add the team name to the teams array
+    teams.push(teamName);
+
+    // let result = {...playerObj}
+    console.log(playerObj)
+    return playerObj;
 }
 
 
@@ -34,7 +42,7 @@ Write a function named joinTeams() that will take two different player objects a
 */
 
 function joinTeams(playerA, playerB) {
-    
+    return [...playerA.teams, ...playerB.teams]
 }
 
 
@@ -53,5 +61,5 @@ let player2 = {
     teams: ["Hornets", "Clippers", "Rockets", "Suns"]
 }
 
-console.log(updatePlayer(player1, "Lakers"))
+// console.log(updatePlayer(player1, "Lakers"))
 console.log(joinTeams(player1, player2))
