@@ -1,0 +1,17 @@
+{
+  "name": "3.7-3.8-packages",
+  "version": "1.0.0",
+  "description": "lecture notes for module 3.7-3.8",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js",
+    "where-am-i": "pwd"
+  },
+  "keywords": [],
+  "author": "Instructor Rob",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.29.4"
+  }
+}

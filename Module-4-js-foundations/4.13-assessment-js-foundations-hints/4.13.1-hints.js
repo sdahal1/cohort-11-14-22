@@ -147,15 +147,41 @@ function addCityToCities(teamObj={}, citiesObj={}) {
 }
 
 
-console.log(addCityToCities(newTeam, cities_usa))
+// console.log(addCityToCities(newTeam, cities_usa))
 
 
 /* 
 
-This function takes a single parameter of cities. It should loop through the cities and return the total championships for everything in the cities
+This function takes a single parameter of cities. It should loop through the cities and return the total championships for every city in the cities collection
 
 */
-function calculateTotalChampionships() {}
+function calculateTotalChampionships1(cities={}) {
+    //store total count in a variable
+    let total = 0;
+    //loop through object way
+    for(let city in cities){
+        let currentCityStats = cities[city];
+        // console.log("city is this", currentCityStats.numberOfChampionships)
+        total+= currentCityStats.numberOfChampionships;
+    }
+    return total
+}
+
+function calculateTotalChampionships2(cities) {
+    //store total count in a variable
+    let total = 0;
+    //loop through object's values array way
+    let values = Object.values(cities)
+    
+    for(let cityData of values){
+        total += cityData.numberOfChampionships;
+    }
+
+    return total;
+}
+
+
+// console.log(calculateTotalChampionships2(cities_usa))
 
 /*
 
@@ -184,6 +210,26 @@ let cities_usa = {
 //example output: "Los Angeles has 20 championships and the following teams: Lakers\n New York has 3 championships and the following teams: Knicks, Nets\n San Franscisco has 5 championships and the following teams: Warriors \n Total Championships: 28"
 
 */
-function printInfo() {}
+function printInfo(cities={}) {
+    //return null if cities object is empty
+    if(Object.keys(cities).length === 0) return null;
 
-// console.log(printInfo(cities_usa))
+    let fullSummary = "";
+    for(let cityNameKey in cities){
+        // Los Angeles has 20 championships and the following teams: Lakers
+        // console.log('citynamekey is this', cityNameKey)
+        // console.log('cities[citynamekey] is this', cities[cityNameKey])
+        // console.log(cities[cityNameKey].teams)
+        const {numberOfChampionships, teams} = cities[cityNameKey]
+        let currentSummary = `${cityNameKey} has ${numberOfChampionships} championships and the following teams: ${teams.join(", ")}\n`
+        fullSummary += currentSummary;
+    }
+
+    // console.log(fullSummary)
+
+    return fullSummary
+}
+
+
+
+console.log(printInfo(cities_usa))
