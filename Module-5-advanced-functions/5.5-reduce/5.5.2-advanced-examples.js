@@ -29,8 +29,16 @@ const movies = [
 
 /*1.  Add up all the views numbers */
 
-function totalViews(movies){
-    
+function totalViews(movies=[]){
+    let result = movies.reduce((accumulator,movieObj)=>{
+        // accumulator += movieObj.views;
+
+        // return accumulator;
+
+        return accumulator+ movieObj.views
+    },0)
+
+    return result;
 }
 
 // console.log(totalViews(movies))
@@ -48,7 +56,13 @@ Example output:
 */
 
 function movieAndProducerName(movies){
-   
+   let result =  movies.reduce((accumulator,movieObj)=>{
+        //create a key in the accumulator object that represents the movieObj's title
+        accumulator[movieObj.title] = movieObj.producer.name;
+
+        return accumulator
+   },{})
+   return result;
 }
 
 
@@ -63,8 +77,7 @@ example output:
 
 {
   'Universal Studios': [
-    { title: 'Austin Powers', views: 1000, producer: [Object] },
-    { title: 'Forrest Gump', views: 3000, producer: [Object] }
+   
   ],
   Disney: [ { title: 'Finding Nemo', views: 2000, producer: [Object] } ]
 }
@@ -72,8 +85,30 @@ example output:
 
 */
 
-function movieByProducer(movies){
+function movieByProducer(movies=[]){
+    let result = movies.reduce((accumulator, movieObj)=>{
+        //create a key in the accumulator object reperesnting the movieObjs producer name
+        //if the accumulator doest not have a key with the produceer name, then create that key, and set the value to be an empty array
+        if(accumulator[movieObj.producer.name] === undefined){
+            //at that key, set the value equal to an empty array
+            accumulator[movieObj.producer.name] = []
+        }
+        //push to that array the current movieObj
+        accumulator[movieObj.producer.name].push(movieObj)
 
+        return accumulator
+    },{})
+
+    return result;
 }
 
-// console.log(movieByProducer(movies))
+/* 
+{
+   "universal studios" :[ AustinPowerObject, ForrestGumpObject ],
+   "disney": [ FindingNemoObject ]
+}
+
+
+*/
+
+console.log(movieByProducer(movies))
