@@ -272,7 +272,6 @@ function partitionCoursesByStudentProgress(courses=[]) {
 
 }
 
-// console.log(partitionCoursesByStudentProgress(courses))
 
 /* 
 
@@ -379,7 +378,14 @@ let oneCourse = {
     ],
 };
 
-console.log(getStudentsForCourse(oneCourse, students));
+// console.log(getStudentsForCourse(oneCourse, students));
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Tuesday Problems start here ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
 
 /* 
 9. getTotalNumberOfClassesForStudent- Given a student object and an array of course objects, find the number of times this student object's id appears in the all the courses rosters array
@@ -394,6 +400,21 @@ let student1 = {
 */
 
 function getTotalNumberOfClassesEnrolledIn(student = {}, courses = []) {
+    let totalCount = 0;
+    //loop through the courses array
+    courses.forEach((courseObj)=>{
+        //look at the currentCourse's roster array for each student in the roster the array 
+        const {roster} = courseObj;
+        
+        roster.forEach((rosterObj)=>{
+            //check if current rosterObjs studentId matches the given students id. every time we find a match, increment a total count by 1
+            if(rosterObj.studentId === student.id){
+                totalCount++;
+            }
+        })
+    })
+    //return the total count
+    return totalCount;
 }
 
 let student1 = {
@@ -407,42 +428,137 @@ let student1 = {
 // console.log(getTotalNumberOfClassesEnrolledIn(student1, courses));
 
 /* 
-10- Given a student object, an array of course objects and an array of authors objects-> give back all the course objects including the instructor information embedded into the course object for the courses the student is enrolled in
+10- Given a student object, an array of course objects and an array of instructors objects->
 
+should return an array of all the courses that the given student is enrolled in with the instructor embedded
 
+output should look like this like this: [
+  {
+    id: 1,
+    name: 'Javascript Fundamentals',
+    category: 'Software Engineering',
+    instructorId: 3,
+    roster: [ {Object}, {Object}, {Object}, {Object}, {Object} ],
+    instructor: { id: 3, name: {Object} }
+  },
+  {
+    id: 2,
+    name: 'Python Fundamentals',
+    category: 'Software Engineering',
+    instructorId: 2,
+    roster: [ {Object}, {Object}, {Object} ],
+    instructor: { id: 2, name: {Object} }
+  },
+  etc;
 
 */
 
-function getCoursesStudentEnrolledIn(student, courses, instructors) {
+function getCoursesStudentTakes(student={}, courses=[], instructors=[]) {
+    //Get only the coures that the student is enrolled in by looping through the courses array
+    let coursesStudentTakes = courses.filter((courseObj)=>{
+        //for each course object, check if the given student's id is in the courses roster. if it is, then make it part of our result;
+        const {roster} = courseObj;
+        let foundStudent = roster.find((rosterObj)=>{
+            //callback for the find method needs to return a boolean
+            return rosterObj.studentId === student.id;
+        })
+        // console.log("found student is this", foundStudent)
+        //foundStudent will either be an object that matched or undefined if the student was not in the roster for the current course
 
+        //filter needs to return a boolen. return true if the foundStudent is found
+        if(foundStudent !== undefined){
+            return true;
+        }else{
+            return false;
+        }
+
+
+        /* The two returns below are also valid! */
+        // return foundStudent!==undefined
+
+        // return foundStudent;
+    })
+
+    //With the filtered array of only enrolled courses, then map each of those courses with the instructor and add the instructor as a key to course object
+    let result = coursesStudentTakes.map((courseObj)=>{
+        //extract the instructorId from teh current course Obj
+        const {instructorId} = courseObj;
+        //look at the instructor dataset to find the first instructr that matches the current courseObj's instructor id
+        let foundInstructor = instructors.find((instructorObj)=>{
+            return instructorObj.id === instructorId
+        })
+
+        //embed the foundinstructor into the current course object
+        courseObj.instructor = foundInstructor;
+
+        //.map needs to return the data you want in your final result. it can be any
+        return courseObj;
+
+    })
+
+    return result;
 }
 
-// console.log(getCoursesStudentEnrolledIn(student1, courses, instructors));
+// console.log(getCoursesStudentTakes(student1, courses, instructors));
 
 /*
-11. Get count of courses that have at least one student not onPace- similar to getBooksBorrowedCount(books)
+11. Given an array of courses, should return the total number of courses that  currently have at least one person behind
 */
 
 function getCoursesNotOnPaceCount(courses = []) {
-  
+    let total = 0;
+    //look at the roster for each course in the courses array
+    courses.forEach((courseObj)=>{
+        const {roster} = courseObj;
+        let isSomeoneNotOnPace = roster.some((rosterObj)=>{
+            //if the current rosterObj onpace is === false
+            return rosterObj.onPace === false;
+        })
+
+        if(isSomeoneNotOnPace===true){
+            total++;
+        }
+
+    })
+
+    return total;
 }
 
-// console.log(getCoursesNotOnPaceCount(courses));
+function getCoursesNotOnPaceCountUsingReduce(courses = []) {
+    //look at the roster for each course in the courses array
+    const total = courses.reduce((accumulator,courseObj)=>{
+        const {roster} = courseObj;
+        let isSomeoneNotOnPace = roster.some((rosterObj)=>{
+            //if the current rosterObj onpace is === false
+            return rosterObj.onPace === false;
+        })
+
+        if(isSomeoneNotOnPace===true){
+            accumulator++;
+        }
+
+        //reduce callback method needs to return the accumulator
+        return accumulator;
+
+    },0)
+
+    return total;
+}
+
+// console.log(getCoursesNotOnPaceCountUsingReduce(courses));
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~Tuesday PM starts here ~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* 
-12. Get most common course categories. Output in this format:
+12. Get most common course categories and order them from most popular to least popular. Limit the count to the top two-> Output in this format
 
 [
     { name: "Software Engineering", count: 3 },
     { name: "Finance", count: 2 },
     { name: "Psychology", count: 2 },
 ]
-
-{
- "Software Engineering": 3,
- "Psychology": 2,
- "finance": 2
-}
 
 
 */
@@ -476,7 +592,7 @@ function getMostPopularCourses(courses = []) {
 
 /* 
 
-14. Get instructors of the 2 largest classes.
+14. getMostPopularInstructors()- Get instructors of the 2 largest classes 
 
 Output in this format: 
 
@@ -487,7 +603,7 @@ Output in this format:
 
 */
 
-function instructorsOfLargestClasses(courses=[], instructors=[]) {
+function getMostPopularInstructors(courses=[], instructors=[]) {
     
 }
 
@@ -495,4 +611,4 @@ function helperJoinFirstAndLastNames(first, last) {
     return `${first} ${last}`
 }
 
-// console.log(instructorsOfLargestClasses(courses, instructors));
+// console.log(getMostPopularInstructors(courses, instructors));

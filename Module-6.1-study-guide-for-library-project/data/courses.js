@@ -4,6 +4,7 @@ const courses = [
         name: "Javascript Fundamentals",
         category: "Software Engineering",
         instructorId: 3,
+        anotherProperty: false,
         roster: [
             {
                 studentId: 1,
@@ -20,6 +21,10 @@ const courses = [
             {
                 studentId: 4,
                 onPace: true
+            },
+            {
+                studentId: 2,
+                onPace: false
             },
             {
                 studentId: 5,
@@ -94,6 +99,7 @@ const courses = [
                 studentId: 2,
                 onPace: true
             },
+            
             {
                 studentId: 5,
                 onPace: true
@@ -137,6 +143,10 @@ const courses = [
             {
                 studentId: 2,
                 onPace: true
+            },
+            {
+                studentId: 1,
+                onPace: false
             },
             {
                 studentId: 5,
