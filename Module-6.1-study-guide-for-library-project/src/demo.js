@@ -344,7 +344,7 @@ function getStudentsForCourse(course={}, students=[]) {
         //see if i can find a student with rosterObj.studentId in the students array
         // rosterObj.studentId
         let foundStudent = students.find((studentObj)=>{
-            return rosterObj.studentId === studentObj.id
+            return rosterObj.studentId === studentObj.id;
         })
 
         //foundStudent is a student object from the students array. We can add a new key to it representing the onPace of the student
@@ -554,16 +554,58 @@ function getCoursesNotOnPaceCountUsingReduce(courses = []) {
 /* 
 12. Get most common course categories and order them from most popular to least popular. Limit the count to the top two-> Output in this format
 
-[
-    { name: "Software Engineering", count: 3 },
-    { name: "Finance", count: 2 },
-    { name: "Psychology", count: 2 },
-]
+// [
+//     { name: "Software Engineering", count: 3 },
+//     { name: "Finance", count: 2 },
+//     { name: "Psychology", count: 2 },
+// ]
 
 
 */
+function getMostCommonCategories(courses=[]){
+    //have an object to keep track of categories and counts
+    let lookUp = {}
+    //for each course object in courses array-> look at the category property
+    courses.forEach((courseObj)=>{
+        const {category} = courseObj;
+        //check our lookUpObj to see if the key repping the current category exists.
+        if(lookUp.hasOwnProperty(category)){
+            //if exists, increment value by 1
+            lookUp[category] += 1;
+        }else{
+            //if no exists, create a key and set the value to be 1
+            lookUp[category] = 1;
+        }
+    })
+    // console.log(lookUp)
+    // console.log(Object.keys(lookUp))
+    const categoriesArray = Object.keys(lookUp) //[ 'Software Engineering', 'Psychology', 'Finance' ]
 
-const getMostCommonCategories = (courses = []) => {
+    /* ~~~~~~~~ for each way ~~~~~~~~~*/
+    // let result = []
+    // categoriesArray.forEach(category=>{
+    //     let count = lookUp[category];
+    //     let currentObj = { name: category, count: count }
+    //     result.push(currentObj);
+    // })
+    /* ~~~~~~~~~ end for each way ~~~~~~~~~*/
+
+    let result = categoriesArray.map(category=>{
+        let count = lookUp[category];
+        let currentObj = { name: category, count: count }
+        return currentObj;
+    })
+    //.slice(0,2) will let me limit the result to the top 2 results
+    return result.slice(0,2)
+    //get the array of keys from lookup
+    /* 
+        {
+           "Software Engineering": 3,
+           "Psychology": 2,
+           "finance": 2
+        }
+    */
+
 };
 
 // console.log(getMostCommonCategories(courses));
@@ -581,11 +623,24 @@ Output in this format:
 */
 
 function getMostPopularCoursesHelper(courses = []) {
-   
+    //sort courses array based on roster.length
+    
 }
 
 function getMostPopularCourses(courses = []) {
-    
+    //sort courses array based on roster.length
+    courses.sort((courseA, courseB)=>{
+        return courseB.roster.length - courseA.roster.length
+    })
+
+    let result = courses.map((courseObj)=>{
+        const {name,roster} = courseObj;
+        let obj = { name, rosterSize: roster.length };
+        return obj;
+    })
+
+    return result.slice(0,3)
+
 }
 
 // console.log(getMostPopularCourses(courses));
@@ -604,11 +659,34 @@ Output in this format:
 */
 
 function getMostPopularInstructors(courses=[], instructors=[]) {
+    //sort courses array based on roster.length
+    courses.sort((courseA, courseB)=>{
+        return courseB.roster.length - courseA.roster.length
+    })
+
+    let topTwoCourses = courses.slice(0,2);
+    console.log(topTwoCourses)
+
     
+    //for each course, look at its instructorId and find an instructor from the instructors array whose id is equal to the current course's instructorId
+    let result = topTwoCourses.map((courseObj)=>{
+        const {instructorId,roster} = courseObj;
+        let foundInstructor = instructors.find((instructorObj)=>{
+            return instructorObj.id === instructorId;
+        })
+        // console.log(`${foundInstructor.name.first} ${foundInstructor.name.last}`)
+        let formattedName = helperJoinFirstAndLastNames(foundInstructor.name.first, foundInstructor.name.last)
+        
+        let obj = { name: formattedName, numStudents: roster.length };
+
+        return obj;
+    })
+
+    return result;
 }
 
 function helperJoinFirstAndLastNames(first, last) {
     return `${first} ${last}`
 }
 
-// console.log(getMostPopularInstructors(courses, instructors));
+console.log(getMostPopularInstructors(courses, instructors));
