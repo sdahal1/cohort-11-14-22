@@ -690,3 +690,4 @@ function helperJoinFirstAndLastNames(first, last) {
 }
 
 console.log(getMostPopularInstructors(courses, instructors));
+
