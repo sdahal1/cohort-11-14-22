@@ -1,19 +1,19 @@
 {
   "players": [
     {
-      "id": "1",
-      "name": "Lebron 'The King from Ohio' James",
-      "team": "Cleveland",
-      "number_championships": 5,
-      "state": "Ohio"
+      "name": "Bron Bron",
+      "team": "Lakers",
+      "number_championships": 4,
+      "state": "California",
+      "retired": false,
+      "id": "1"
     },
     {
       "id": "2",
       "name": "Chef Curry aka greatest shooter of all time",
       "team": "Cleveland",
       "number_championships": 5,
-      "state": "Ohio",
-      "age": 34
+      "state": "Ohio"
     },
     {
       "id": "3",
@@ -51,91 +51,11 @@
       "state": "Illinois"
     },
     {
-      "name": "Michael Jordan",
-      "team": "Bulls",
-      "number_championships": 6,
-      "state": "Illinois",
-      "id": "u1KXTWx"
-    },
-    {
       "name": "Magic Johnson",
       "team": "Lakers",
       "number_championships": 5,
       "state": "California",
-      "id": "EZmvqzm"
-    },
-    {
-      "name": "Magic Johnson",
-      "team": "Lakers",
-      "number_championships": 5,
-      "state": "California",
-      "id": "SYmdBpE"
-    },
-    {
-      "id": "a4lGp-W"
-    },
-    {
-      "name": "Magic Johnson",
-      "team": "Lakers",
-      "number_championships": 5,
-      "state": "California",
-      "id": "_wx5CHf"
-    },
-    {
-      "name": "Magic Johnson",
-      "team": "Lakers",
-      "number_championships": 5,
-      "state": "California",
-      "id": "-3RZchP"
-    },
-    {
-      "name": "Magic Johnson",
-      "team": "Lakers",
-      "number_championships": 5,
-      "state": "California",
-      "id": "cTS18qL"
-    },
-    {
-      "name": "Magic Johnson",
-      "team": "Lakers",
-      "number_championships": 5,
-      "state": "California",
-      "id": "B3FyC29"
-    },
-    {
-      "name": "Magic Johnson",
-      "team": "Lakers",
-      "number_championships": 5,
-      "state": "California",
-      "id": "gEPUYx1"
-    },
-    {
-      "name": "Magic Johnson",
-      "team": "Lakers",
-      "number_championships": 5,
-      "state": "California",
-      "id": "aQFpW5t"
-    },
-    {
-      "name": "Magic Johnson",
-      "team": "Lakers",
-      "number_championships": 5,
-      "state": "California",
-      "id": "SaCW9Rv"
-    },
-    {
-      "name": "Magic Johnson",
-      "team": "Lakers",
-      "number_championships": 5,
-      "state": "California",
-      "id": "DLongvm"
-    },
-    {
-      "name": "Magic Johnson",
-      "team": "Lakers",
-      "number_championships": 5,
-      "state": "California",
-      "id": "YSuf57w"
+      "id": "8CmgG9Y"
     }
   ]
 }

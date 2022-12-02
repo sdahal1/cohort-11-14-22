@@ -1,0 +1,1 @@
+//bulk delete given an array of id's-> return a promise that returns the id and name of player that was deleted in an object ({name: "", id:""})
