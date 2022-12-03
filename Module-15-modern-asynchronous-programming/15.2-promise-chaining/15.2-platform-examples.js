@@ -1,89 +1,78 @@
 const axios = require("axios");
-const BASE_URL = "http://localhost:5000";
-const playersUrl = `${BASE_URL}/players`;
-
-let newPlayer = {
-    name: "Magic Johnson",
-    team: "Lakers",
-    number_championships: 5,
-    state: "California",
-};
 
 /* 
 
-function addPlayerIfTheyDontExist(newPlayer){
-    //check if a player by the name of magic johnson exists. 
-    axios.get(`${playersUrl}`)
-    .then(({data})=>{
-        let foundPlayer = data.find((playerObj)=>{
-            return playerObj.name === newPlayer.name
+
+//get post put delete
+function createPlayerIfPlayerNotExists(playerObj){
+    //get all the players
+    axios.get("http://localhost:5000/players")
+    .then((response)=>{
+        const {data} = response;
+        console.log("after get request", data);
+        let foundPlayer = data.find((element)=>{
+            return element.name === playerObj.name;
         })
         
-        //If the player doesnt not exist, then create a player with the newPlayer object
-        if(foundPlayer === undefined){
-            axios.post(`${playersUrl}`, newPlayer)
+        //if found player === undefined then then we can create someone new!
+        if(!foundPlayer){
+            axios.post("http://localhost:5000/players", playerObj)
             .then((response)=>{
-                console.log("added player")
-                console.log(response.data);
+                const {data} = response;
+                console.log("after post request", data);
             })
             .catch((err)=>{
-                console.log(err);
+                console.log(err)
             })
-        }else{
-            throw new Error("Player name is taken. Insert another player")
+        }
+        //if found player exists then we will throw an error saying that duplicates are not allowed!
+        else{
+            throw new Error("Player already exists, no duplicate players allowed!")
         }
         
     })
     .catch((error)=>{
-        console.log(error.message)
+        console.log(error.message);
     })
-    
 }
-
-
 
 */
 
-function addPlayerIfTheyDontExist(newPlayer) {
-    //check if a player by the name of magic johnson exists.
-    axios
-        .get(`${playersUrl}`)
-        .then(({ data }) => {
-            let foundPlayer = data.find((playerObj) => {
-                return playerObj.name === newPlayer.name;
-            });
 
-            return foundPlayer;
+function createPlayerIfPlayerNotExists(playerObj){
+    //get all the players
+    axios.get("http://localhost:5000/players")
+        .then((response)=>{
+            const {data} = response;
+            // console.log("after get request", data);
+            let foundPlayer = data.find((element)=>{
+                return element.name === playerObj.name;
+            })
+
+            return "Young mula cash mula"; //foundPlayer will either be an object or undefined
+
         })
-        .then((foundPlayer) => {
-            if (foundPlayer)
-                throw new Error("Player name is taken. Insert another player");
-            return axios.post(`${playersUrl}`, newPlayer);
+        .then((foundPlayer)=>{
+            if(!foundPlayer){
+                return axios.post("http://localhost:5000/players", playerObj);
+            }
+            throw new Error("Player already exists, no duplicate players allowed!")
         })
-        .then((responseFromPost) => {
-            console.log(responseFromPost.data);
+        .then((response)=>{
+            const {data} = response;
+            console.log("after post request", data);
         })
-        .catch(console.log);
-    // .catch((error)=>{
-    //     console.log(error)
-    // })
+        .catch((error)=>{
+            console.log(error.message);
+        })
 }
 
-// addPlayerIfTheyDontExist(newPlayer);
 
-new Promise((resolve, reject) => {
-    const random = 8
-    random > 5 ? resolve(random) : reject(random);
-})
-    .then((response) => {
-        console.log("Resolved!", response);
-        // return response;
-    })
-    .catch((response) => {
-        console.log("Rejected!", response);
-        return response;
-    })
-    .then((response) => {
-        console.log("response is this", response)
-        console.log("Add 10", response + 10);
-    });
+let newPlayer =  {
+    "name": "Shaq",
+    "team": "Celtics",
+    "number_championships": 0,
+    "state": "Massachetues"
+}
+
+createPlayerIfPlayerNotExists(newPlayer);

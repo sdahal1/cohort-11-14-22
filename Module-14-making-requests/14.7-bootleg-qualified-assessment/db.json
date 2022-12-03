@@ -1,19 +1,18 @@
 {
   "players": [
     {
-      "name": "Bron Bron",
+      "name": "The King From Ohio",
       "team": "Lakers",
       "number_championships": 4,
       "state": "California",
-      "retired": false,
       "id": "1"
     },
     {
-      "id": "2",
-      "name": "Chef Curry aka greatest shooter of all time",
-      "team": "Cleveland",
-      "number_championships": 5,
-      "state": "Ohio"
+      "name": "Steph Curry",
+      "team": "Hornets",
+      "number_championships": 4,
+      "state": "North Carolina",
+      "id": "2"
     },
     {
       "id": "3",
@@ -56,6 +55,27 @@
       "number_championships": 5,
       "state": "California",
       "id": "8CmgG9Y"
+    },
+    {
+      "name": "Dirk",
+      "team": "Mavericks",
+      "number_championships": 0,
+      "state": "Dallas",
+      "id": "TnH2JUZ"
+    },
+    {
+      "name": "Jason Tatum",
+      "team": "Celtics",
+      "number_championships": 0,
+      "state": "Massachetues",
+      "id": "Wjjj5Ui"
+    },
+    {
+      "name": "Shaq",
+      "team": "Celtics",
+      "number_championships": 0,
+      "state": "Massachetues",
+      "id": "4coHQ5C"
     }
   ]
 }

@@ -5,31 +5,43 @@ const playersUrl = `${BASE_URL}/players`;
 //get post put delete
 //update if player exists
 function updatePlayerIfPlayerExists(id, body){
-    //check the player exists. if exists, update the player with the given body
-    axios.get(`${playersUrl}/${id}`)
-        .then(({data})=>{
-            return axios.put(`${playersUrl}/${id}`,body)
-                
+    return axios.get(`http://localhost:5000/players/${id}`)
+        .then((responseFromGetRequest)=>{
+            const {data} = responseFromGetRequest;
+            // console.log(data);
+
+            return axios.put(`http://localhost:5000/players/${id}`, body)
+                // .then((response)=>{
+                //     const {data} = response;
+                //     console.log(data);
+                //     return data
+                // })
+                // .catch((err)=>{
+                //     console.log("error on put req", err)
+                // })
+
         })
         .then((responseFromPutRequest)=>{
-            console.log(responseFromPutRequest.data);
-            return responseFromPutRequest.data;
+            const {data} = responseFromPutRequest;
+            console.log(data);
+            return data
         })
-        .catch(err=>{
-            //if player is not found then it will go to .catch()
-            console.log(err.message)
-            return err.message
+        .catch((err)=>{
+            // console.error("Player not found so how we gona update? Huh? Yea thought so");
+            console.log(err.message);
+            return err.message;
         })
 }
 
 
 
-let updatedInfo = {
-    name: "Bron Bron",
+let newInfoToUpdateWith = {
+    name: "The King From Ohio",
     team: "Lakers",
     number_championships: 4,
     state: "California"
 };
 
 
-updatePlayerIfPlayerExists(1, updatedInfo)
+updatePlayerIfPlayerExists(1, newInfoToUpdateWith)
+
