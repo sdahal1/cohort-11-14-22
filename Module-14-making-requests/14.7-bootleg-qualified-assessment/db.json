@@ -57,25 +57,11 @@
       "id": "8CmgG9Y"
     },
     {
-      "name": "Dirk",
-      "team": "Mavericks",
-      "number_championships": 1,
-      "state": "Dallas",
-      "id": "TnH2JUZ"
-    },
-    {
       "name": "Jason Tatum",
       "team": "Celtics",
       "number_championships": 0,
       "state": "Massachetues",
       "id": "Wjjj5Ui"
-    },
-    {
-      "name": "Shaq",
-      "team": "Celtics",
-      "number_championships": 0,
-      "state": "Massachetues",
-      "id": "4coHQ5C"
     }
   ]
 }
