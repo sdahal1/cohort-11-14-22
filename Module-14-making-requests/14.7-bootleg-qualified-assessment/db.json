@@ -1,11 +1,11 @@
 {
   "players": [
     {
-      "name": "The King From Ohio",
+      "id": "1",
+      "name": "LBJ",
       "team": "Lakers",
       "number_championships": 4,
-      "state": "California",
-      "id": "1"
+      "state": "Cali"
     },
     {
       "name": "Steph Curry",
@@ -44,22 +44,22 @@
     },
     {
       "id": "7",
-      "name": "Michael Jordan",
+      "name": "Michael Jordan version 2",
       "team": "Bulls",
       "number_championships": 6,
       "state": "Illinois"
     },
     {
-      "name": "Magic Johnson",
+      "name": "Magic Johnson Billonaire Version",
       "team": "Lakers",
       "number_championships": 5,
       "state": "California",
       "id": "8CmgG9Y"
     },
     {
-      "name": "Jason Tatum",
-      "team": "Celtics",
-      "number_championships": 0,
+      "name": "Jason Terry",
+      "team": "Lakers",
+      "number_championships": 1,
       "state": "Massachetues",
       "id": "Wjjj5Ui"
     }
