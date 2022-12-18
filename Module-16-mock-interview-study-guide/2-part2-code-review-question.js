@@ -3,7 +3,7 @@ You will get some code that is already passing all tests, however you'll need to
 
 */
 
-const axios = require("axios"); //what is this? what is it used for? -> allows us to make api calls (web requests-> get, post, put, patch, delete)
+const axios = require("axios"); //what is this? what is it used for? -> allows us to make api calls (web requests-> get=retrieve data, post=create, put=update, delete)
 
 
 
@@ -11,7 +11,7 @@ const axios = require("axios"); //what is this? what is it used for? -> allows u
 //Example 1- a function that is given an array of objects and another array of arrays. Return back an array of objects containing some data from the two inputs
 //what are parameters? -> placeholder variables for the inputs the function expects to receive
 //setting default parameters? Why are they useful? -> so you can help to avoid edge cases, tell the function what data type to expect to prevent errors, 
-function getTeamGamesData(teams, games) {
+function getTeamGamesData(teams=[], games=[]) {
 
     let teamWinsLosses = [];
     
@@ -20,7 +20,7 @@ function getTeamGamesData(teams, games) {
     //what other ways do you know to loop through arrays? and what other ways can we get the number of a total amount of something?
     //refactor for loop to use an array method like .forEach,
     for (let i = 0; i < teams.length; i++) {
-        let numWins = 0; //
+        let numWins = 0; //0
         let numLosses = 0; //0
 
         //this nested loop will run the length of games[i] (the length of the sub array in the games array). games[0] would give me the games for the team[0]. games[0] is an array of the games that team[0] has played
@@ -39,43 +39,10 @@ function getTeamGamesData(teams, games) {
             numLosses: numLosses,
             numGames: games[i].length,
         });
-        /* 
-        {
-            teamName: "Lakers",
-            numWins: 3,
-            numLosses: 2,
-            numGames: 5
-        },
-        {
-            teamName: "Warriors",
-            numWins: 5,
-            numLosses: 0,
-            numGames: 5
-        }
-        
-        */
+       
     }
     return teamWinsLosses;
-    /* 
-    teamsWinsLosses will look like this 
-    [
-       {
-            teamName: "Lakers",
-            numWins: 3,
-            numLosses: 2,
-            numGames: 5
-        },
-        {
-            teamName: "Warriors",
-            numWins: 5,
-            numLosses: 0,
-            numGames: 5
-        }
-
-    ]
-    
-    
-    */
+   
 }
 
 let teams = [
@@ -97,12 +64,9 @@ let teams = [
 ]
 
 let games = [
-    ["W", "L", "W", "W", "L"], 
-//    j    j    j    j    j                       
+    ["W", "L", "W", "W", "L"],     
     ["W", "W", "W", "W", "W"], 
-//                           
-    ["L", "L", "L", "W", "L"], // i = 2
-//   j=0
+    ["L", "L", "L", "W", "L"],
 ];
 
 // console.log(getTeamGamesData(teams, games))
@@ -164,7 +128,7 @@ const getMultipleCoinsInfo = (coins) => {
 
     //in this case, topThreeCoins.map(getCoinInfo) means-> for every coin object in topThreeCoins array, run the getCoinInfo function and return that result into an array. So we will have an array containing the result of the getCoinInfo function for each coin from topThreeCoins-> array of pending promsies---> [ Promise { <pending> }, Promise { <pending> }, Promise { <pending> } ]
 
-    console.log(topThreeCoins.map(getCoinInfo));
+    
     return Promise.all(topThreeCoins.map(getCoinInfo)).then((response) => {
         //response looks like the 
         console.log("got response in .all", response); //what does response look like here? and why does it look like this?
@@ -184,37 +148,40 @@ const getMultipleCoinsInfo = (coins) => {
 
 
 function listCoinsInfoFromCoinGecko(){
+    return axios
+        .get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+        .then(response=> {
+            return response.data
+        })
+        .then(getMultipleCoinsInfo)
+        .then((coinData)=>{
+            return coinData
+        })
+
+    /* the above code is the same as this */
     // axios
     //     .get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
     //     .then(response=> {
     //         return response.data
     //     })
-    //     .then(getMultipleCoinsInfo)
+    //     .then((data)=>{
+    //         return getMultipleCoinsInfo(data)
+    //     })
     //     .then((coinData)=>{
     //         return coinData
     //     })
-
-    axios
-        .get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
-        .then(response=> {
-            return response.data
-        })
-        .then((data)=>{
-            return getMultipleCoinsInfo(data)
-        })
-        .then((coinData)=>{
-            return coinData
-        })
+    /* End */
 }
 
 
-async function listCoinsInfoFromCoinGecko2(){
-    let response = await axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+async function listCoinsInfoFromCoinGecko(){
+    const response = await axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
 
-    let {data} = response;
+    const data = response.data;
 
-    let coinData = await getMultipleCoinsInfo(data);
-    return coinData;
+    const coinsData = await getMultipleCoinsInfo(data);
+    
+    return coinsData;
 }
 
 

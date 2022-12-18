@@ -23,6 +23,7 @@ function getTeamGamesData(teams = [], games = []) {
                 numLosses++;
             }
         })
+        
         //push an object containing the team name, number of wins for this team, num losses for this team, and number of games total for this team-> push this object to our result array
         teamWinsLosses.push({
             teamName: teamObj.name,

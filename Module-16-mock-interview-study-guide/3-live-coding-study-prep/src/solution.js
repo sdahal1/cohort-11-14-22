@@ -1,17 +1,17 @@
 const axios = require("axios");
 
-// function getCoinMarketData(coinName){
-//     return axios.get(`https://api.coingecko.com/api/v3/coins/${coinName}`)
-//         .then((response)=>{
+function getCoinMarketData(coinName){
+    return axios.get(`https://api.coingecko.com/api/v3/coins/${coinName}`)
+        .then((response)=>{
             
-//             // console.log(response.data.market_data);
-//             return response.data.market_data;
-//         })
-//         .catch(err=>{
-//             console.log(err.data)
-//         })
+            // console.log(response.data.market_data);
+            return response.data.market_data;
+        })
+        .catch(err=>{
+            console.log(err.data)
+        })
 
-// }
+}
 
 
 async function getCoinMarketData(coinName){

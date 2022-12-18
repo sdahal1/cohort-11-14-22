@@ -16,24 +16,29 @@
 
 
 -What is github vs git?
+    -github- remote version control 
+    -git- local version control
 
 -what does git init do?
+    -initialize a git repo with a .git folder-> .git contains data about the version history of your repo
 
 -what does git add -A do?
+    -staging changes
 
 -what does git commit -m "message here" do?
+    -taking a snapshot of the current version-> commit history has the differnt snapshots of your different versions of the repo
 
 -what does git push do?
 
 
 -What do you call this "As a logged in user, I should be able to see all my friends who are online on my dashboard"
-
+    -Use Story
 
 -What do you do when you need some extra tools to help in building your application, but those features dont come with node? Example-> need something to help format dates better
-
+    -Packages-> npm i packageNameHere@versionNumberHere
 
 -What is a client?
-
+    -The entity that is making a request to the server
 
 -What is a server?
     -A server is a program that will accept requests and give back a resposne to the client that requests it
@@ -66,7 +71,12 @@
 -What is a callback function?
 
 -What are higher-order- functions?
-
+    -function that accept functions as inputs, or functions that return functions
+    -find(), filter(), map(), reduce(), sort(), forEach()
+    let arr = [3,6,9]
+    arr.find((num)=>{
+        return num>7
+    })
 
 -Difference between Mocha and Chai? 
 
