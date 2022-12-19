@@ -1,0 +1,38 @@
+main {
+  padding: 20px 0;
+}
+
+section {
+  margin-bottom: 100px;
+}
+
+h1 {
+  margin: 0 0 30px 10px;
+}
+
+h2 {
+  margin: 0 10px;
+  border-bottom: 1px solid gray;
+}
+
+h3 {
+  margin: 12px 0;
+  border-bottom: 1px solid lightgray;
+}
+
+/* Groups & Items */
+
+.group {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 100px;
+}
+
+.item {
+  flex: 1;
+  margin: 10px;
+}
+
+.item-double {
+  flex: 2;
+}
