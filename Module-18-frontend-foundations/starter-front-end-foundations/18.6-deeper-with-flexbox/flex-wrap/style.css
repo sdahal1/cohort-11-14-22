@@ -24,6 +24,7 @@ header nav ul {
   flex-direction: row;
   padding-bottom: 0px;
   max-width: 25%;
+  border: 1px solid white;
 }
 
 .wrap {
@@ -50,4 +51,29 @@ header nav ul li a {
 
 header nav ul li a:hover {
   color: #bdbdbd;
+}
+
+
+.box-holder {
+  display: flex;
+  height: 1000px;
+  /* gap: 15px; */
+  flex-wrap: wrap;
+  border: 2px solid red;
+  /* flex-direction: column; */
+  /* justify-content: flex-start; */
+  /* justify-content: flex-end; */
+  justify-content: center;
+  /* justify-content: space-between; */
+  /* justify-content: space-around; */
+
+
+
+}
+
+.box {
+  background-color: aqua;
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
 }

@@ -1,48 +1,30 @@
-h1{
-    text-align: center;
-}
-
-.section-1 img, .section-2 img, .section-3 img{
+section img {
     width: 100%;
 }
 
-.section-1{
-    margin-bottom: 20px;
+.flex {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 
-@media all and (min-width: 500px){
-    .row{
-        display: flex;
-        gap: 15px;
+@media all and (min-width: 800px){
+    /* desktop view code goes here */
+    .flex {
+        gap: 20px;
+        flex-direction: row;
     }
 
-    .col-1{
+    .group-2 div h3 {
+        text-align: center;
+    }
+
+    .item {
         flex: 1;
-        border: 2px solid black;
     }
 
-    .col-2{
+    .item-double {
         flex: 2;
-        border: 2px solid black;
     }
-
-    .col-2 img{
-        height: 700px;
-    }
-
-    .section-3 {
-        background-color: bisque;
-        padding: 10px 30px;
-    }
-
-    /* .section-3 div{
-        flex: 1;
-        width: 100px;
-    } */
-
-    
 }
-
-
-

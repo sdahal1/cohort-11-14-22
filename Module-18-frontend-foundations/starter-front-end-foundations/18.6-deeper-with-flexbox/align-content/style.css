@@ -2,17 +2,21 @@
   margin: 0;
   list-style: none;
   float: left;
-  width: 120px;
+  width: 500px;
   height: 300px;
   padding: 10px;
   border: 1px solid silver;
   margin-top: 10px;
   display: flex;
-  flex-flow: row wrap;
+  /* flex-flow: row wrap; */
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .flex-start {
-  align-content: flex-start;
+  align-content: space-between;
+  justify-content: space-between;
+
 }
 
 .flex-start li {

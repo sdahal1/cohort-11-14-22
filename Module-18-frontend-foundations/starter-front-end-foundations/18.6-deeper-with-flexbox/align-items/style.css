@@ -62,3 +62,21 @@ main {
   font-size: 2em;
   text-align: center;
 }
+
+
+
+.box-holder{
+  background-color: gray;
+  display: flex;
+  height: 1000px;
+  align-items: center;
+  justify-content: center;
+}
+
+.box{
+  height: 100px;
+  width: 100px;
+  background-color: aqua;
+  border: 1px solid black;
+  gap: 10px;
+}
