@@ -46,7 +46,7 @@ header {
 
 .brand-name {
   font-family: cursive;
-  font-size: 72px;
+  font-size: 48px;
   color: #fff;
 }
 
@@ -54,15 +54,25 @@ header nav ul li {
   list-style-type: none;
 }
 
+
+
 header nav ul li a {
   color: #fff;
   text-decoration: none;
   padding: 0 20px 0 0;
+  font-size: 10px;
 }
 
 header nav ul li a:hover {
   color: #bdbdbd;
   text-decoration: none;
+}
+
+/* new code navigation */
+#menu {
+  display: flex;
+  justify-content: center;
+  /* flex-direction: row; */
 }
 
 /* -------  Search Form ------- */
@@ -91,6 +101,25 @@ form button {
   width: 100%;
 }
 
+/* new form code here */
+form div {
+  display: flex;
+  justify-content: space-between;
+}
+
+#history {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+
+/* main body code here (under the form) */
+main img {
+  width: 100%;
+}
+
 /* -------  Footer ------- */
 
 footer {
@@ -105,4 +134,84 @@ footer p {
 
 /* -------  Media Query ------- */
 
+/* extreme small mobile view up to 420px */
+@media all and (max-width: 420px){
+  
+  form input, form select {
+    width: 140px;
+  }
+}
+
+
 /* mobile view is < 480px, desktop view is >=480px */
+
+
+
+/* desktop view of 480px or more */
+@media all and (min-width: 480px){
+  header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  form{
+    display: flex;
+    gap: 15px;
+  }
+
+  form div{
+    flex-direction: column;
+    width: 18%;
+    flex: 1;
+  }
+
+  form div input, form div select {
+    width: 100%;
+  }
+
+  form button {
+    font-size: 20px;
+    width: auto;
+  }
+
+  /* make the images side by side with the text */
+  #history div{
+    display: flex;
+    gap: 15px;
+  }
+  /* make all images except kobe and lebron disappear */
+  .hide{
+    display: none;
+  }
+
+  #history div img{
+    width: 22%;
+  }
+
+  .row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .row div {
+    flex: 1;
+  }
+
+  .row div img{
+    height: 400px;
+    object-fit: cover;
+  }
+
+  #handling {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  #handling img{
+    width: 50%;
+  }
+
+
+}
