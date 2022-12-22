@@ -46,23 +46,25 @@ ratingsDivs.forEach((ratingDiv)=>{
 
 /* INSERTING ELEMENTS ON THE PAGE */
 
-//select all elements with the classname of park-display
-const parks = document.querySelectorAll(".park-display");
-// console.log(parks.length);
-const numberOfParks = parks.length;
-
-//create an element that is a div
-const newElement = document.createElement("div");
-console.log(newElement)
-
-//give the div some inner text (content)
-newElement.innerText = `There are ${numberOfParks} in this page.`
-newElement.classList.add("header-statement");
-//select where in the dom I want to insert this new div
-let header = document.querySelector("header");
-
-//insert the newElement into the dom;
-header.appendChild(newElement);
+function insertNumParksDiv(){
+    //select all elements with the classname of park-display
+    const parks = document.querySelectorAll(".park-display");
+    // console.log(parks.length);
+    const numberOfParks = parks.length;
+    
+    //create an element that is a div
+    const newElement = document.createElement("div");
+    console.log(newElement)
+    
+    //give the div some inner text (content)
+    newElement.innerText = `There are ${numberOfParks} in this page.`
+    newElement.classList.add("header-statement");
+    //select where in the dom I want to insert this new div
+    let header = document.querySelector("header");
+    
+    //insert the newElement into the dom;
+    header.appendChild(newElement);
+}
 
 
 /* REMOVING ELEMENTS FROM THE PAGE */
@@ -74,3 +76,5 @@ let mainElement = document.querySelector("main");
 let firstSection = document.querySelector(".park-display")
 
 mainElement.removeChild(firstSection);
+
+insertNumParksDiv();
