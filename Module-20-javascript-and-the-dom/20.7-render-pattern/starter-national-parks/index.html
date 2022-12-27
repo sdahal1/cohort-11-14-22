@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>National Parks</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="banner">
+      <h1>National Parks</h1>
+    </header>
+    <div class="sorter">
+      Sort by:
+      <a href="" class="sort-link" id="name-sorter">Name</a> |
+      <a href="" class="sort-link" id="rating-sorter">Rating</a>
+    </div>
+    <div class="input-form">
+      <h2>Add a new park</h2>
+      <form action="" id="park-form">
+        <label for="name-input">Name</label>
+        <input
+          type="text"
+          name="name"
+          id="name-input"
+          title="Park name"
+        />
+        <div class="error" id="name-error">Please enter a name</div>
+        <label for="location-input">Location</label>
+        <input
+          type="text"
+          name="location"
+          id="location-input"
+          title="Park location"
+        />
+        <div class="error" id="location-error">Please enter a location</div>
+        <label for="description-input">Description</label>
+        <textarea name="description" id="description-input"></textarea>
+        <div class="error" id="description-error">
+          Please enter a short description
+        </div>
+        <label for="established-input">Established</label>
+        <input
+          type="text"
+          name="established"
+          id="established-input"
+          title="Established"
+        />
+        <div class="error" id="established-error">Please enter a date</div>
+        <label for="area-input">Area</label>
+        <input
+          type="text"
+          name="area"
+          id="area-input"
+          title="Area"
+        />
+        <div class="error" id="area-error">Please enter the area</div>
+        <label for="rating-input">Rating</label>
+        <input
+          type="number"
+          min="1"
+          max="5"
+          name="rating"
+          id="rating-input"
+          title="rating"
+        />
+        <div class="error" id="rating-error">
+          Please enter the rating between 1 and 5 inclusive.
+        </div>
+        <div class="form-control">
+          <button type="submit" id="add-button">Add</button>
+        </div>
+      </form>
+    </div>
+    <main>
+      
+    </main>
+    <script src="data.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
